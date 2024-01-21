@@ -34,7 +34,7 @@ jobs: #任务
             echo "DOCKER_TAG=1.0" | tee -a "${GITHUB_OUTPUT}"
           fi
 
-      - name: 构建镜像并上传 tag
+      - name: 构建镜像并上传
         id: docker_build
         uses: docker/build-push-action@v5
         with:
@@ -42,15 +42,6 @@ jobs: #任务
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
-          tags: mutouloves/rustdesk-api:${{steps.vars.outputs.DOCKER_TAG}}
-
-      - name: 构建镜像并上传 latest
-        id: docker_buildx
-        uses: docker/build-push-action@v5
-        with:
-          build-args: |
-          context: .
-          file: ./Dockerfile
-          platforms: linux/amd64,linux/arm/v7,linux/arm64
-          push: true
-          tags: mutouloves/rustdesk-api:latest
+          tags: |
+            mutouloves/rustdesk-api:latest
+            mutouloves/rustdesk-api:${{steps.vars.outputs.DOCKER_TAG}}
