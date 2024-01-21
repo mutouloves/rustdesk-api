@@ -36,7 +36,7 @@ jobs: #任务
 
       - name: 构建镜像并上传 tag
         id: docker_build
-        uses: docker/build-push-action@v4.0.0
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: ./Dockerfile
@@ -46,7 +46,7 @@ jobs: #任务
 
       - name: 构建镜像并上传 latest
         id: docker_buildx
-        uses: docker/build-push-action@v4.0.0
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: ./Dockerfile
